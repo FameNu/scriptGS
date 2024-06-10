@@ -1,3 +1,19 @@
+function generatGmail() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("All");
+  const data = sheet.getDataRange().getValues();
+  const lastRow = sheet.getLastRow()
+  
+  console.log('email')
+  for (let i = 1; i < lastRow; i++) {
+    console.log(data[i][5])
+    const outlook = data[i][5]
+    const gmail = outlook.replace(/@kmutt\.ac\.th$/i, "@mail.kmutt.ac.th")
+    const gmailCol = sheet.getRange("I" + (i + 1))
+    console.log(gmail)
+    gmailCol.setValue(gmail)
+  }
+}
+
 function copyAndEditPaste() {
   const sheetName = 'All'
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName)
